@@ -4,37 +4,162 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ZAS Global LLC – Wholesale • Government Supply</title>
+  <meta name="description" content="ZAS Global LLC – clothing & accessories wholesale, consumer goods distribution, and government micro-purchase supply." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#0a1320; --text:#f5f7fb; --muted:#b8c2d9;
+      --brand:#2f7dde; --accent:#aeb8c6; --panel:#0f1a2b;
+      --shadow:0 6px 18px rgba(0,0,0,.3);
+      --input:#0c1526;
+      --ok:#36c275; --err:#f04444;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+    a{color:var(--brand);text-decoration:none}
+    header,footer{padding:1.2rem 2rem;max-width:1200px;margin:auto}
+    main{max-width:1200px;margin:auto;padding:2rem}
+    h1,h2,h3{margin-top:0}
+    .logo{display:flex;align-items:center;gap:.6rem;font-weight:700}
+    .logo-mark{width:40px;height:40px;border-radius:10px;
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      display:grid;place-items:center;box-shadow:var(--shadow);}
+    .logo-mark svg{width:24px;height:24px;fill:#0a1320}
+    .hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:2rem;margin-top:1.5rem}
+    .hero img{border-radius:12px;box-shadow:var(--shadow)}
+    .cta{display:inline-block;background:linear-gradient(135deg,var(--brand),var(--accent));
+      color:#0a1320;padding:.8rem 1.4rem;border-radius:10px;font-weight:700}
+    .section{margin-top:3rem}
+    .cards{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+    .card{background:var(--panel);padding:1.5rem;border-radius:14px;box-shadow:var(--shadow)}
+    form .field{margin:.8rem 0}
+    form label{display:block;font-weight:600;margin-bottom:.3rem}
+    form input,form textarea{width:100%;padding:.7rem 1rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:var(--input);color:var(--text)}
+    form input::placeholder, form textarea::placeholder { color: #93a3c2; }
+    form button{margin-top:.8rem}
+    .help{color:var(--muted);font-size:.9rem}
+    .status{margin-top:.8rem;font-weight:600}
+    .status.ok{color:var(--ok)}
+    .status.err{color:var(--err)}
+    footer{color:var(--muted);font-size:.9rem;text-align:center;margin-top:3rem}
+    @media(max-width:850px){.hero{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <h1>ZAS Global LLC</h1>
-  <p>Contact form below stays on this page.</p>
-  <form id="contactForm">
-    <input name="name" placeholder="Your Name" required />
-    <input name="email" type="email" placeholder="Email" required />
-    <textarea name="message" placeholder="Message" required></textarea>
-    <button type="submit">Send</button>
-    <p id="status"></p>
-  </form>
+  <header>
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2c2.5 0 4.71 1.15 6.17 2.94-1.05.34-2.22.56-3.47.65-.53-1.9-1.36-3.2-2.7-3.59zM9.78 4.04C8.66 4.5 7.76 5.9 7.2 7.73c-1.39-.1-2.67-.32-3.77-.68A7.98 7.98 0 019.78 4.04zm10.26 4.32c-1.29.4-2.74.65-4.28.73-.08 1.43-.36 2.74-.79 3.84 1.65-.1 3.2-.44 4.58-1.01.3-1.13.47-2.34.49-3.56zM6.95 8.98c-1.74-.09-3.34-.37-4.75-.86A7.97 7.97 0 004 16.03c1.03-.37 2.22-.62 3.5-.72-.26-.96-.41-2.05-.44-3.26-.01-1.09.06-2.17.2-3.07zM8.75 12c.03 1.4.2 2.61.5 3.56 1.02.03 2.1.03 3.25 0 1.31-.04 2.47-.13 3.48-.25.48-1.14.78-2.51.86-4.05-1.29.07-2.7.07-4.22.02-1.5-.04-2.88-.14-4.13-.28-.1.3-.17.6-.23 1z"/></svg>
+      </div>
+      <div>ZAS&nbsp;Global&nbsp;LLC</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Wholesale & Supply for Government and Business</h1>
+        <p>ZAS Global LLC provides apparel, accessories, and consumer goods with micro-purchase friendly pricing and fast fulfillment. Registered in SAM .gov and ready to support federal and local procurement.</p>
+        <a href="#contact" class="cta">Request a Quote</a>
+      </div>
+      <img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?q=80&w=1200&auto=format&fit=crop" alt="Boxes and apparel"/>
+    </section>
+
+    <section class="section">
+      <h2>Capabilities</h2>
+      <div class="cards">
+        <div class="card"><h3>Government Supply</h3><p>Small-lot purchasing, credit-card orders, and rapid delivery for federal, state, and local buyers.</p></div>
+        <div class="card"><h3>Apparel Wholesale</h3><p>Uniforms, tees, polos, outerwear, caps, and accessories — customization available.</p></div>
+        <div class="card"><h3>General Merchandise</h3><p>Consumer goods sourcing with BAA/TAA compliance when required.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Contact Us</h2>
+      <!-- Removed mailto: to prevent "unsafe form" & redirect -->
+      <form id="contactForm" autocomplete="on" novalidate>
+        <div class="field">
+          <label for="name">Your Name</label>
+          <input id="name" name="name" placeholder="e.g., Zaheer Ahmad" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" required autocomplete="email" />
+          <div class="help">We’ll never share your email.</div>
+        </div>
+        <div class="field">
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" placeholder="Subject" autocomplete="on" />
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="How can we help?" required autocomplete="off"></textarea>
+        </div>
+
+        <!-- Honeypot for bots -->
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <button class="cta" type="submit">Send Message</button>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </form>
+      <p class="help">Your message stays on this page — no email app opens.</p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> ZAS Global LLC · All rights reserved
+  </footer>
+
   <script>
-  const f=document.getElementById('contactForm'), s=document.getElementById('status');
-  f.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    s.textContent='Sending...';
-    const data = {
-      name: f.name.value.trim(),
-      email: f.email.value.trim(),
-      message: f.message.value.trim()
-    };
-    try{
-      const r = await fetch('/contact', {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(data)
-      });
-      const j = await r.json();
-      if(r.ok && j.success){ s.textContent='Message sent — thank you!'; f.reset(); }
-      else{ s.textContent=j.error||'Could not send.'; }
-    }catch(err){ s.textContent='Network error.'; }
-  });
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('status');
+
+    function setStatus(msg, ok=false){
+      statusEl.textContent = msg;
+      statusEl.className = 'status ' + (ok ? 'ok' : 'err');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // Basic client-side validation
+      if(!data.name || !data.email || !data.message){
+        setStatus('Please fill out name, email, and message.');
+        return;
+      }
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)){
+        setStatus('Please enter a valid email.');
+        return;
+      }
+
+      setStatus('Sending...', true);
+      try {
+        const resp = await fetch('/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: data.name.trim(),
+            email: data.email.trim(),
+            message: data.message.trim(),
+            website: data.website || ''
+          })
+        });
+        const json = await resp.json();
+        if (resp.ok && json.success) {
+          setStatus('Message sent — thank you!', true);
+          form.reset();
+          setTimeout(()=> setStatus(''), 4000);
+        } else {
+          setStatus(json.error || 'Could not send. Try again later.');
+        }
+      } catch (err) {
+        setStatus('Network error. Please try again later.');
+      }
+    });
   </script>
 </body>
 </html>
