@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZAS Global LLC – Wholesale • Government Supply</title>
+</head>
+<body>
+  <h1>ZAS Global LLC</h1>
+  <p>Contact form below stays on this page.</p>
+  <form id="contactForm">
+    <input name="name" placeholder="Your Name" required />
+    <input name="email" type="email" placeholder="Email" required />
+    <textarea name="message" placeholder="Message" required></textarea>
+    <button type="submit">Send</button>
+    <p id="status"></p>
+  </form>
+  <script>
+  const f=document.getElementById('contactForm'), s=document.getElementById('status');
+  f.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    s.textContent='Sending...';
+    const data = {
+      name: f.name.value.trim(),
+      email: f.email.value.trim(),
+      message: f.message.value.trim()
+    };
+    try{
+      const r = await fetch('/contact', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      });
+      const j = await r.json();
+      if(r.ok && j.success){ s.textContent='Message sent — thank you!'; f.reset(); }
+      else{ s.textContent=j.error||'Could not send.'; }
+    }catch(err){ s.textContent='Network error.'; }
+  });
+  </script>
+</body>
+</html>
