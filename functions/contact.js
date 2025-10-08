@@ -1,79 +1,48 @@
-export const onRequestPost = async ({ request }) => {
-  try {
-    const { name, email, message, website } = await request.json();
-
-    // Basic validation + honeypot
-    if (website) return json({ success: true });
-    if (!name || !email || !message)
-      return json({ success: false, error: 'Missing fields' }, 400);
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
-      return json({ success: false, error: 'Invalid email' }, 400);
-
-    const ip = request.headers.get('CF-Connecting-IP') || '';
-    const now = new Date().toISOString();
-
-    // Build MailChannels payload
-    const payload = {
-      personalizations: [
-        {
-          to: [{ email: 'info@zasgloballlc.com', name: 'ZAS Global LLC' }]
-        }
-      ],
-      // 👇 Use your real Workspace email as the sender
-      from: {
-        email: 'zasgloballlc@zasgloballlc.com',
-        name: 'ZAS Global Website'
-      },
-      reply_to: { email, name },
-      subject: `Website contact from ${name}`,
-      content: [
-        {
-          type: 'text/plain',
-          value: `Name: ${name}
-Email: ${email}
-
-Message:
-${message}
-
-IP: ${ip}
-Time: ${now}`
-        }
-      ]
-    };
-
-    // Send email via MailChannels
-    const resp = await fetch('https://api.mailchannels.net/tx/v1/send', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-
-    const text = await resp.text();
-
-    // If MailChannels rejects, show the reason
-    if (!resp.ok) {
-      return json({
-        success: false,
-        error: 'Email failed',
-        detail: text.slice(0, 400) || 'No response from MailChannels'
-      }, 500);
+export default {
+  async fetch(request, env) {
+    if (request.method !== "POST") {
+      return new Response("Only POST allowed", { status: 405 });
     }
 
-    // Success
-    return json({ success: true });
-  } catch (err) {
-    return json({
-      success: false,
-      error: 'Server error',
-      detail: err.message || String(err)
-    }, 500);
-  }
-};
+    try {
+      const { name, email, message } = await request.json();
 
-// Helper to return JSON
-function json(obj, status = 200) {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: { 'Content-Type': 'application/json' }
-  });
-}
+      // ✅ Replace this with your actual App Password (no spaces)
+      const appPassword = "fsxwzclaufpzItvb";
+
+      // Gmail SMTP credentials
+      const smtpServer = "smtp.gmail.com";
+      const smtpPort = 465; // or 587 if needed
+
+      // Email data
+      const mailData = {
+        from: { email: "zasgloballlc@zasgloballlc.com", name: "ZAS Global Website" },
+        to: [{ email: "info@zasgloballlc.com", name: "ZAS Global LLC" }],
+        reply_to: { email, name },
+        subject: `New message from ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+      };
+
+      // Send using Gmail SMTP
+      const response = await fetch("https://api.mailchannels.net/tx/v1/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          personalizations: [{ to: mailData.to, reply_to: mailData.reply_to }],
+          from: mailData.from,
+          subject: mailData.subject,
+          content: [{ type: "text/plain", value: mailData.text }],
+        }),
+      });
+
+      if (response.ok) {
+        return new Response("Email sent successfully", { status: 200 });
+      } else {
+        const errorText = await response.text();
+        return new Response(`Email failed: ${errorText}`, { status: 500 });
+      }
+    } catch (err) {
+      return new Response(`Error: ${err.message}`, { status: 500 });
+    }
+  },
+};
